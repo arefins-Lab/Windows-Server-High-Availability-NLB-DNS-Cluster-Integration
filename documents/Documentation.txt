@@ -1,0 +1,46 @@
+NLB Cluster Infrastructure Setup
+-------------------------------- 
+This repository contains PowerShell scripts and documentation for setting up a Windows Network Load Balancing (NLB) Cluster with a Domain Controller and two Web Servers.
+
+Topology Overview
+Domain Controller: DC-SRV01 (192.168.2.201)
+Web Server 01: WEB-SRV01 (192.168.2.202)
+Web Server 02: WEB-SRV02 (192.168.2.203)
+Cluster VIP: 192.168.2.50
+Domain: project.test
+
+Step-by-Step Installation
+-------------------------
+1. Domain Controller (DC-SRV01)
+First, configure the DC to handle DNS and Active Directory. Run the commands in scripts/dc-setup.ps1:
+
+Renames server to DC-SRV01.
+Sets static IP 192.168.2.201.
+Installs AD DS and DNS roles.
+Promotes to Forest project.test.
+
+2. Web Servers (WEB-SRV01 & WEB-SRV02)
+Prepare the nodes for the cluster. Run the scripts on each respective server:
+
+Sets static IPs (.202 and .203).
+Joins the domain (optional/manual) and points DNS to DC.
+Installs IIS Web Server and NLB Feature.
+
+3. Cluster Configuration
+Once roles are installed, create the cluster:
+
+Use New-NlbCluster to initialize with VIP 192.168.2.50.
+Add nodes using Add-NlbClusterNode.
+Verify with Get-NlbClusterNode.
+
+How to Use the Scripts
+Open PowerShell as Administrator.
+Clone this repository:
+
+PowerShell
+
+git clone https://github.com/your-username/your-repo-name.git
+Navigate to the scripts/ folder and execute the .ps1 files sequentially.
+
+✅ Verification
+After setup, you can verify the load balancing by accessing: http://192.168.2.50 or http://project.test
