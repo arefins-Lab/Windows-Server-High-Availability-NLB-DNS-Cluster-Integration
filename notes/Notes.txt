@@ -1,0 +1,18 @@
+Important Notes & Prerequisites
+-------------------------------
+Execution Policy: Before running any scripts, ensure your PowerShell execution policy allows script execution. 
+Run: Set-ExecutionPolicy RemoteSigned -Force
+
+Network Adapter Name: These scripts assume your network interface is named "Ethernet". If your VM uses a different name 
+(e.g., "Ethernet0"), update the scripts accordingly.
+
+Safe Mode Password: During the DC promotion (Install-ADDSForest), the script will pause and ask for a Directory Services 
+Restore Mode (DSRM) password. This cannot be automated easily for security reasons.
+
+Reboots: The Domain Controller will automatically reboot after promotion. This is normal.
+
+Cluster Mode: The NLB cluster is configured in Multicast mode. Ensure your virtual switch (Hyper-V/VMware) supports 
+MAC address changes and forged transmits if you face connectivity issues.
+
+Firewall: For testing purposes, you might need to allow ICMP (Ping) and Port 80 (HTTP) through the Windows Firewall 
+if the nodes can't talk to each other.
