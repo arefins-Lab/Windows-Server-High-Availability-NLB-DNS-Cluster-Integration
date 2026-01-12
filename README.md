@@ -62,8 +62,16 @@ Above: Proof of successful traffic routing to the active cluster node.
 
 Implementation Notes:
 
-DNS Resolution: All nodes point to 192.168.2.201 for primary DNS.
+DNS Resolution: All nodes are configured to point to 192.168.2.201 as the primary DNS server.
 
 Security: Ensure Windows Firewall allows Port 80 and NLB traffic.
 
-Scalability: Additional nodes can be added using the Add-NlbClusterNode cmdlet found in the scripts.
+Scalability: Additional nodes can be added using the Add-NlbClusterNode cmdlet, which is located in the scripts.
+
+
+
+Security Note:
+
+Note: For demonstration purposes, this lab uses Port 80 (HTTP). For any production environment, implementing Port 443 (HTTPS) with a valid SSL/TLS certificate is highly recommended to ensure encrypted communication.
+
+
